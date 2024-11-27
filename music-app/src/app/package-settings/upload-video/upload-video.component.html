@@ -1,0 +1,139 @@
+<div class="upload-video-container">
+  <form [formGroup]="videoForm" (ngSubmit)="onSubmit()">
+      
+    <!-- 1. About Song Section -->
+    <div class="row-form">
+      <div class="about-song_container row_gap">
+        <div class="header_row">
+          <span>1. About Song</span>
+        </div>
+          
+        <div class="body_row">
+          <!-- Singer Input -->
+          <div class="col-form">
+            <label for="nameSinger">Name Singer/s</label>
+            <div formArrayName="nameSinger" class="add_singer_container">
+              <div class="nameSinger" *ngFor="let singer of nameSingers.controls; let i = index">
+                <input [formControlName]="i" type="text" placeholder="Enter Singer Name">
+                <button type="button" (click)="removeSinger(i)">Remove</button>
+              </div>
+            </div>
+            <button type="button" (click)="addSinger()">Add New Singer</button>
+          </div>
+  
+          <div class="col-form col_gap">
+            <div class="col_row-form">
+              <div class="col-form">
+                <label for="nameSong">Name Song</label>
+                <input formControlName="nameSong" class="width300" type="text" placeholder="Enter Song Name">
+              </div>
+  
+              <div class="col-form">
+                <label for="nameChanel">Name Channel</label>
+                <input class="width300" type="text" placeholder="Enter Channel Name" [value]="channelName" readonly>
+              </div>
+            </div>
+  
+            <div class="col-form">
+              <label for="fullNameSong">Full Name Song</label>
+              <input formControlName="fullNameSong" class="width600" type="text" placeholder="Enter Full Song Name">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- 2. Video -->
+    <div class="video_image_container row_gap">
+      <div class="header_row">
+        <span>2. Video </span>
+      </div>
+        
+      <div class="body_row">
+            
+        <div class="row-form" (click)="fileInput.click()">
+          <label for="videoFile">Upload Video</label>
+          <input type="file" #fileInput (change)="onFileVideoChange($event)" id="videoFile" accept="video/mp4">
+        </div>
+      </div>
+    </div>
+  
+    <!-- 3. Data Song Section -->
+    <div class="date_song_container row_gap">
+      <div class="header_row">
+        <span>3. Data Song</span>
+      </div>
+      <div class="body_row data_row">
+        <label for="data">Song Date</label>
+        <p id="data">{{currentDate}}</p>
+      </div>
+    </div>
+  
+    <!-- 4. Hashtags Section -->
+    <div class="hashtags_type_container row_gap">
+      <div class="header_row">
+        <span>4. Hashtags</span>
+      </div>
+  
+      <div class="body_row">
+        <!-- Add New Hashtags -->
+        <div class="col-form">
+          <label for="addHashtag">Add New Hashtags:</label>
+          <div formArrayName="addHashtag" class="newHashtags_container">
+            <div class="newHashtags" *ngFor="let hashtagControl of newHashtags.controls; let i = index">
+              <input [formControlName]="i" placeholder="Enter new hashtag" />
+              <button type="button" (click)="removeHashtag(i)">Remove</button>
+            </div>
+          </div>
+          <button type="button" (click)="addHashtag()">Add New Hashtag</button>
+        </div>
+  
+        <!-- Select Existing Hashtags -->
+        <div class="col-form">
+          <label for="selectHashtags">Select Hashtag</label>
+          <div class="hashtag-all-container">
+            <div 
+              *ngFor="let hashtag of predefinedHashtags" 
+              [ngClass]="{'selected': isChecked(hashtag)}"
+              (click)="toggleHashtag(hashtag)" 
+              class="hashtag-all">
+              {{ hashtag }}
+            </div>
+          </div>
+  
+          <!-- Display selected hashtags -->
+          <div class="selected-hashtags">
+            <span *ngFor="let hashtag of selectedHashtags">{{ hashtag }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- 5. Text Song Section -->
+    <div class="text_song_container row_gap">
+      <div class="header_row">
+        <span>5. Text Song</span>
+      </div>
+  
+      <div class="body_row">
+        <div class="col-form">
+          <label for="describe_Song">Song Description</label>
+          <textarea formControlName="descriptionVideo" placeholder="Enter Song Description"></textarea>
+        </div>
+  
+        <div class="col-form">
+          <label for="lyrics">Lyrics</label>
+          <textarea formControlName="lyrics" placeholder="Enter Lyrics"></textarea>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Submit Button -->
+    <div class="row-form">
+      <button type="submit" class="upload-button" [disabled]="videoForm.invalid">
+        <p>Submit</p>
+      </button>
+    </div>
+  </form>
+</div>
+  

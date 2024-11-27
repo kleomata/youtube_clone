@@ -1,0 +1,69 @@
+<main class="main" [ngClass]="{'expanded': isSidebarCollapsed}">
+  
+  <div class="tags-container">
+    <button>Hits</button>
+    <button>Eminem All Zone</button>
+    <button>Ultra Smatr</button>
+    <button>P 300</button>
+  </div>
+  
+  <div class="video-cont">
+    <div *ngIf="allVideo.length === 0">
+      <p>No video available in database.</p>
+    </div>
+  
+    <div *ngIf="allVideo.length > 0" class="video-container">
+      <div *ngFor="let video of allVideo" class="item-video"
+        (mouseenter)="playVideo($event, video.videoName)"
+        (mouseleave)="pauseAndResetVideo($event, video.videoName)"
+        (click)="navgationToVideo(video.id)"
+        >
+        
+        <div class="row-video">
+          <div *ngIf="videoUrls[video.videoName]?.loading">
+            <p>Loading video...</p>
+          </div>
+    
+          <video *ngIf="!videoUrls[video.videoName]?.loading && videoUrls[video.videoName]?.url"
+              #videoElement muted
+              (loadedmetadata)="onMetadataLoaded(videoElement)"
+              (timeupdate)="onTimeUpdate(videoElement, video.videoName)">
+              <source [src]="videoUrls[video.videoName].url" type="video/mp4">
+          </video>
+    
+          <div *ngIf="!videoUrls[video.videoName]?.url && !videoUrls[video.videoName]?.loading">
+            <p>Failed to load video.</p>
+          </div>
+          <div class="time-div">
+            <div *ngIf="isMouseOverVideo && activeVideoName === video.videoName">
+              <span>{{ getRemainingTime(video.videoName) }}</span>
+            </div>
+          
+            <div *ngIf="!isMouseOverVideo || activeVideoName !== video.videoName">
+              <p>{{ video.durationVideo }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="row-info">
+          <div class="col-image">
+            <img 
+            *ngIf="userPictureUrl[video.imageProfile]" 
+            [src]="userPictureUrl[video.imageProfile].url" 
+            alt=""
+            (click)="navigationChannelUser(video.channelName)"
+            >
+          </div>
+          <div class="col-info">
+            <p class="bold">{{video.fullNameSong}}</p>
+            <p class="nonbold channel" (click)="navigationChannelUser(video.channelName)">
+              {{video.channelName}}
+            </p>
+            <p class="nonbold">{{video.elapsedTime + ' ago'}}</p>
+          </div>
+        </div>
+      </div>
+     
+  
+    </div>
+  </div>
+</main>

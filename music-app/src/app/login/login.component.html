@@ -1,0 +1,64 @@
+<div class="container">
+    <img class="image-log" src="../../assets/images/youtube_logo.png" alt="">
+    <div class="box">
+
+        <div class="box-login">
+
+            <div class="sec-login">
+                <div class="content-head">
+                    <h1>Login</h1>
+                </div>
+
+                <!-- login -->
+                <div class="content-form">
+                    <form [formGroup]="loginForm" (ngSubmit)="login()">
+                        <div class="form-group">
+                            <input type="text" id="username" formControlName="username" name="username" required placeholder="Enter Username" class="form-input"/>                
+                        </div>
+                
+                        <div class="form-group">
+                                <input type="password" id="password" formControlName="password" name="password" required placeholder="Enter Password" class="form-input"/>
+                        </div>
+                
+                        <button type="submit" class="button-login">Login</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="sec-middle">
+                <div class="line"></div>
+                <div class="middle-line">or</div>
+                <div class="line"></div>
+            </div>
+
+            <div class="sec-register">
+                <p>Don't have an account?</p>
+                <a [routerLink]="['/register']" class="register-text-link">
+                    <p>Register Youtube now</p>
+                </a>
+            </div>
+
+            <div class="sec-footer-line">
+                <div class="line-footer"></div>
+            </div>
+
+            <div class="sec-footer-login">
+                <p class="copyright-text">All content on this channel is protected by copyright laws. 
+                    Unauthorized use, reproduction, or distribution of videos or 
+                    other materials is prohibited. For permission to use or share 
+                    our content, please contact us directly. Respecting copyright 
+                    helps support and sustain our creative efforts.
+                </p>
+                <p class="copyright">Copyright © 2024 Youtube. All Rights Reserved.</p>
+            </div>
+
+        </div>
+        
+        <div class="box-image">
+            <img class="box-image-logo" src="../../assets/images/youtube_logo.png" alt="">
+            <app-slideshow-login-image></app-slideshow-login-image>
+        </div>
+
+
+    </div>
+</div>

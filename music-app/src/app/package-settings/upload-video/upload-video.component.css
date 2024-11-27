@@ -1,0 +1,261 @@
+.upload-video-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    overflow-y: scroll;
+}
+.upload-video-container form {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* ======== Structur Row ========== */
+
+.upload-video-container .row-form .header_row {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+.upload-video-container .row-form .header_row span {
+  font-weight: bold;
+  font-size: 20px;
+}
+.upload-video-container .row-form .header_row div {
+  width: 300px;
+  height: 1px;
+  background: white;
+}
+.upload-video-container .row-form {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+
+.upload-video-container .row-form .body_row {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+}
+
+.upload-video-container .row-form .col-form {
+  display: flex;
+  flex-direction: column;
+}
+.upload-video-container .row-form .col_gap {
+  gap: 30px;
+}
+.upload-video-container .col-form .col_row-form {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+}
+
+
+.upload-video-container .col-form input {
+  border: none;
+  border-bottom: 1px solid white; 
+  outline: none;
+  background: none;
+  height: 40px;
+  border-radius: 10px;
+  padding: 10px;
+}
+.upload-video-container .col-form .width300 {
+  width: 300px;
+}
+.upload-video-container .col-form .width600 {
+  width: 600px;
+}
+.upload-video-container .data_row input {
+  border: none;
+  border-bottom: 1px solid white; 
+  outline: none;
+  background: none;
+  height: 40px;
+  width: 250px;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+/* ======================================== */
+
+
+
+
+.upload-video-container .row-form .col-form .input-content {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.upload-video-container .row-form .col-form .input-content input {
+  border: none;
+  border-bottom: 1px solid white; 
+  outline: none;
+  background: none;
+  height: 40px;
+  width: 250px;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.upload-video-container .col-form .hashtag-all-container {
+  display: flex;
+  max-width: 1300px;
+  height: 200px;
+  list-style: none;
+  flex-wrap: wrap;
+  gap: 10px;
+  overflow-y: scroll;
+}
+.upload-video-container .col-form .hashtag-all-container .hashtag-all {
+  display: inline-block;
+  padding: 5px 10px;
+  cursor: pointer;
+  border: 1px solid white;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.upload-video-container .col-form .hashtag-all-container .hashtag-all.selected {
+  background-color: #ff0000; 
+  border: 1px solid #ff0000;
+  color: white;
+  transition: border 0.3s;
+}
+
+.upload-video-container .col-form .selected-hashtags {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  max-width: 1300px;
+  height: 50px;
+  flex-wrap: wrap;
+  border: 1px solid #272727;
+  border-radius: 10px;
+  margin-top: 5px;
+  padding: 5px;
+  overflow-y: scroll;
+}
+.upload-video-container .col-form .selected-hashtags span {
+  color: #ff0000;
+  margin-left: 5px;
+}
+
+
+textarea {
+  resize: none;
+  outline: none;
+  border-radius: 10px;
+  background: transparent;
+  border: none;
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+  padding: 10px;
+  width: 500px;
+  height: 300px;
+}
+
+/* ===== 1 - About Song =======*/
+.upload-video-container .hashtags_type_container {
+  display: flex;
+  flex-direction: column;
+}
+.upload-video-container .about-song_container .add_singer_container{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  border: none;
+  height: 200px;
+  padding: 10px;
+  border-radius: 10px;
+  overflow-y: scroll;
+}
+.upload-video-container .about-song_container .nameSinger{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+}
+
+.upload-video-container .about-song_container .nameSinger input {
+  border: none;
+  border: 1px solid white; 
+  outline: none;
+  background: none;
+  height: 40px;
+  width: 150px;
+  border-radius: 10px;
+  padding: 10px;
+}
+.upload-video-container .about-song_container  button {
+  background: #ff0000;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.upload-video-container .hashtags_type_container {
+  display: flex;
+  flex-direction: column;
+}
+.upload-video-container .hashtags_type_container .newHashtags_container{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  border: none;
+  height: 200px;
+  padding: 10px;
+  border-radius: 10px;
+  overflow-y: scroll;
+}
+.upload-video-container .hashtags_type_container .newHashtags{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+}
+
+.upload-video-container .hashtags_type_container input {
+  border: none;
+  border: 1px solid white; 
+  outline: none;
+  background: none;
+  height: 40px;
+  width: 150px;
+  border-radius: 10px;
+  padding: 10px;
+}
+.upload-video-container .hashtags_type_container button {
+  background: #ff0000;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.container {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  color: black;
+  background: white;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+

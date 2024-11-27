@@ -1,0 +1,1110 @@
+.watch-container {
+    margin-left: -240px;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    background: #0f0f0f;
+}
+.watch {
+    width: 100%;
+    padding-left: 6%;
+    padding-right: 6%;
+    height: auto;
+    background: transparent;
+    padding-top: 25px;
+    display: flex;
+    flex-direction: row;
+}
+.watch .primary {
+    width: calc(100% - 424px);
+    margin-left: 24px;
+    padding-right: 24px;
+    display: flex;
+    flex-direction: column;
+}
+/* = ============================================= */
+.watch .primary .video {
+    width: 100%;
+    height: auto;
+    position: relative;
+}
+.watch .primary .video video {
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    display: block;
+}
+.watch .primary .video .loading-video {
+    width: 100%;
+    height: 500px;
+    border-radius: 20px;
+    background: black;
+}
+.watch .primary .video .logo-play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    width: 68px;
+    height: 48px;
+    cursor: pointer;
+}
+.watch .primary .video .logo-play svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.watch .primary .video .logo-play svg .bg{
+    fill: rgb(33, 33, 33, .8);
+}
+.watch .primary .video .logo-play svg .icon{
+    fill: #ffffff;
+}
+.watch .primary .video:hover .logo-play svg .bg {
+    fill: #ff0000;
+}
+
+
+.watch .primary .video .progress-bar-container {
+    position: absolute;
+    height: 30px;
+    left: 0;
+    bottom: 48px;
+    background: transparent;
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.watch .primary .video .progress-bar-input {
+    width: 100%;
+    height: 4px;
+    background: #ddd;
+    border-radius: 2px;
+    -webkit-appearance: none;
+    appearance: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.watch .primary .video .progress-bar-input::-webkit-slider-runnable-track {
+    height: 4px;
+    background: #ddd;
+    border-radius: 2px;
+}
+
+.watch .primary .video .progress-bar-input::-moz-range-track {
+    height: 4px;
+    background: #ddd;
+    border-radius: 2px;
+}
+
+.watch .primary .video .progress-bar-input::-webkit-slider-progress {
+    height: 100%;
+    background: red;
+}
+
+.watch .primary .video .progress-bar-input::-moz-range-progress {
+    height: 100%;
+    background: red;
+}
+
+.watch .primary .video .progress-bar-input::-webkit-slider-thumb {
+    width: 12px;
+    height: 12px;
+    background: red;
+    border-radius: 50%;
+    border: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+}
+
+.watch .primary .video .progress-bar-input::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    background: red;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+}
+
+.watch .primary .video .progress-bar-input:hover::-webkit-slider-thumb {
+    background: #cc0000;
+}
+
+.watch .primary .video .progress-bar-input:hover {
+    background: #bbb;
+}
+
+.watch .primary .video .video-controls {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border-radius: 0px 0px 20px 20px;
+    height: 48px;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.watch .primary .video .video-controls .col-video {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: auto;
+    flex-direction: row;
+
+}
+.video-controls .play-pause-btn {
+    cursor: pointer;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+}
+.video-controls .play-pause-btn button {
+    outline: none;
+    border: none;
+    background: transparent;
+    font-size: 20px;
+    cursor: pointer;
+}
+.video-controls .time-display {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+.video-controls .time-display span {
+    font-size: 15px;
+    margin-right: 15px;
+}
+
+
+.video-controls .volume {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 100%;
+}
+.video-controls .volume .icon {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    width: 40px;
+    cursor: pointer;
+}
+.video-controls .volume i {
+    font-size: 20px;
+}
+.video-controls .volume .volume-input {
+    width: 100px;
+    height: 4px;
+    background: #ddd;
+    border-radius: 2px;
+    -webkit-appearance: none;
+    appearance: none;
+    outline: none;
+    cursor: pointer;
+    margin-right: 10px;
+}
+.video-controls .volume .volume-per {
+    width: 40px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+.video-controls .volume span {
+    font-size: 15px;
+}
+.video-controls .volume .volume-input::-webkit-slider-runnable-track {
+    height: 4px;
+    background: #ddd;
+    border-radius: 2px;
+}
+
+.video-controls .volume .volume-input::-moz-range-track {
+    height: 4px;
+    background: #ddd;
+    border-radius: 2px;
+}
+
+.video-controls .volume .volume-input::-webkit-slider-progress {
+    height: 100%;
+    background: red;
+}
+
+.video-controls .volume .volume-input::-moz-range-progress {
+    height: 100%;
+    background: red;
+}
+
+.video-controls .volume .volume-input::-webkit-slider-thumb {
+    width: 12px;
+    height: 12px;
+    background: red;
+    border-radius: 50%;
+    border: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+}
+.video-controls .volume .volume-input::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    background: red;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+}
+
+.video-controls .volume .volume-input:hover::-webkit-slider-thumb {
+    background: #cc0000;
+}
+.video-controls .volume .volume-input:hover {
+    background: #bbb;
+}
+
+/* ====== Settings Command */
+.video-controls .col-video .settings {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    cursor: pointer; 
+}
+.video-controls .col-video .settings .rotated {
+    transform: rotate(90deg);
+    transition: transform .3s ease;
+}
+.video-controls .col-video .settings i{ 
+    font-size: 20px;
+    transition: transform .3s ease;
+}
+
+
+
+.settings-command {
+    width: 260px;
+    height: auto;
+    background: rgba(28,28,28,.9);
+    position: absolute;
+    bottom: 75px;
+    right: 12px;
+    border-radius: 15px;
+    z-index: 50;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.settings-command .row-sett {
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    justify-content: space-between;
+
+}
+.settings-command .row-sett:hover {
+    background: #3f3f3f;
+}
+.settings-command .row-sett .row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 100%;
+}
+.settings-command .row-sett i {
+    font-size: 20px;
+    margin-right: 5px;
+}
+.settings-command .row-sett span {
+    font-size: 15px;
+}
+.settings-command .row-sett .icon-right {
+    font-size: 15px;
+    margin-left: 10px;
+}
+.settings-command .playspeed-options {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.settings-command .playspeed-options .speed {
+    height: 40px;
+    width: 100%;
+    cursor: pointer;
+    padding-left: 30px;
+    display: flex;
+    align-items: center;
+}
+.settings-command .playspeed-options .speed:hover {
+    background: #3f3f3f;
+}
+
+
+
+/* =========== */
+
+/* = ============================================= */
+
+.watch .primary .info {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.watch .primary .info .prim-command {
+    display: flex;
+    flex-direction: column;
+}
+
+.watch .info .title-song {
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 5px;
+}
+
+.watch .channel-command {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.watch .prim-command .image,
+.watch .prim-command .image img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.watch .channel-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 15px;
+}
+.watch .channel-info .image img {
+    object-fit: cover;
+    object-position: center;
+}
+.watch .channel-info .channel-name {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    margin-right: 25px;
+}
+.watch .channel-info .channel-name .channel-text {
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+}
+.watch .channel-info .channel-name .subscribe {
+    color: #ccc;
+    font-size: 15px;
+}
+
+.watch .channel-info .btn-subscribe {
+    background: white;
+    color: black;
+    padding: 10px 20px;
+    border-radius: 20px;
+    outline: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .3s all ease;
+    border: 1px solid white;
+}
+.watch .channel-info .btn-subscribe:hover {
+    transition: .3s all ease;
+    background: black;
+    color: white;
+    border: 1px solid black;
+}
+.watch .channel-info .btn-unsubscribe {
+    background: black;
+    border: 1px solid white;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    outline: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .3s all ease;
+}
+.watch .channel-info .btn-unsubscribe:hover {
+    transition: .3s all ease;
+    background: #0f0f0f;
+    color: white;
+}
+
+/* more - com*/
+.info .channel-command .more-com {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    margin-top: 15px;
+}
+.info .channel-command .more-com .likeDislikeContent {
+    display: flex;
+    flex-direction: row;
+    height: 40px;
+    align-items: center;
+    background: #3f3f3f;
+    border-radius: 20px;
+}
+.info .channel-command .more-com .likeDislikeContent .line {
+    width: 1px;
+    height: 80%;
+    background: #ccc;
+}
+.info .channel-command .more-com .likeDislikeContent .like,
+.info .channel-command .more-com .likeDislikeContent .dislike {
+    height: 100%;
+    width: 100%;
+}
+.info .channel-command .more-com .likeDislikeContent .like button,
+.info .channel-command .more-com .likeDislikeContent .dislike button{
+    border: none;
+    outline: none;
+    background: #3f3f3f;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    height: 100%;
+    align-items: center;
+    width: 70px;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 16px;
+    position: relative;
+}
+.info .channel-command .more-com .likeDislikeContent .like button {
+    border-radius: 20px 0px 0px 20px;
+}
+.info .channel-command .more-com .likeDislikeContent .dislike button{
+    border-radius: 0px 20px 20px 0px;
+}
+.info .channel-command .more-com .likeDislikeContent .like button:hover,
+.info .channel-command .more-com .likeDislikeContent .dislike button:hover{
+    background: #686868;
+}
+.info .channel-command .more-com .likeDislikeContent .like button .text,
+.info .channel-command .more-com .likeDislikeContent .dislike button .text{
+    position: absolute;
+    font-size: 13px;
+    top: -100%;
+    display: none;
+    width: 100px;
+    background: #686868;
+    border-radius: 10px;
+    padding: 5px 0px;
+}
+.info .channel-command .more-com .likeDislikeContent .like button:hover .text,
+.info .channel-command .more-com .likeDislikeContent .dislike button:hover .text{
+    display: block;
+}
+  
+
+
+
+/* ============================== */
+
+.watch .info .more {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+    background: #272727;
+    border-radius: 15px;
+    padding: 15px;
+    height: auto;
+    min-height: 127px;
+    transition: height 0.3s ease-in-out;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    align-items: flex-start;
+    justify-content: start;
+}
+.watch .info .more.expanded {
+    height: auto;
+    overflow: visible;
+    cursor: default;
+}
+.watch .info .more:active {
+    background: #3f3f3f;
+}
+.watch .info .more.more.expanded:active {
+    background: #272727;
+}
+.watch .info .more .date {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+.watch .info .more .date p {
+    font-weight: bold;
+}
+.watch .info .more .date i {
+    font-size: 5px;
+    color: #ccc;
+}
+
+.watch .info .more .hashtag {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 5px;
+}
+.watch .info .more .hashtag p {
+    cursor: pointer;
+    color: #3ba0f6;
+}
+.watch .info .more .hashtag p:hover {
+    color: white;
+}
+.watch .info .more .description {
+    width: 100%;
+    white-space: normal;
+    margin-top: 5px;
+}
+.watch .info .more .line {
+    width: 10%;
+    background: #ccc;
+    height: 1px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.watch .info .more .description pre,
+.watch .info .more .lyrics pre {
+    white-space: pre-wrap;
+}
+
+.watch .info .more .lyrics p {
+    font-weight: bold;
+    font-size: 17px;
+    margin-bottom: 5px;
+}
+.watch .info .more .lessMore {
+    bottom: 0;
+    right: 0;
+    cursor: pointer;
+    z-index: 10;
+}
+.watch .info .more .lessDiv {
+    display: flex;
+    align-items: flex-start;
+    justify-content: start;
+}
+
+/* Comment section */
+.comment-container {
+    width: 100%;
+    height: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.comment-container .title {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+}
+.comment-container .title .subTitle {
+    display: flex;
+    flex-direction: row;
+    color: #ccc;
+    align-items: center;
+    padding-bottom: 1px;
+}
+.comment-container .title i {
+    margin-left: 5px;
+    margin-right: 5px;
+    font-size: 5px;
+}
+.comment-container .title h5 {
+    height: 100%;
+}
+
+.comment-container .add-comment {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 30px;
+}
+.comment-container .add-comment img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+    margin-right: 10px;
+}
+.comment-container .add-comment form {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    width: 100%;
+    margin-right: 10px;
+}
+.comment-container .add-comment form textarea {
+    resize: none;
+    height: auto;
+    width: 100%;
+    background: transparent;
+    overflow: hidden;
+    outline: none;
+    border: none;
+    min-height: 10px;
+    border-bottom: 1px solid #272727;
+    word-wrap: break-word;
+    line-height: 1.5;
+}
+.comment-container .add-comment form textarea:focus {
+    border-bottom: 1px solid white;
+}
+.comment-container .add-comment form .button-comm {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    margin-top: 5px;
+}
+.comment-container .add-comment form .button-comm button {
+    padding: 8px 15px;
+    outline: none;
+    border: none;
+    font-size: 15px;
+    background: transparent;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .3s all ease;
+    cursor: pointer;
+}
+.comment-container .add-comment form .button-comm .submit {
+    background: #272727;
+    transition: .3s all ease;
+}
+.comment-container .add-comment form .button-comm .cancel {
+    background: transparent;
+    transition: .3s all ease;
+}
+.comment-container .add-comment form .button-comm .submit:hover,
+.comment-container .add-comment form .button-comm .cancel:hover {
+    background: #3f3f3f;
+    transition: .3s all ease;
+}
+
+
+.comment-container .allComment{
+    width: 100%;
+    height: auto;
+}
+.comment-container .container-comment{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+.comment-container .container-comment .item-comment {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+}
+.comment-container .item-comment .image {
+    margin-right: 20px;
+}
+/**/
+.comment-container .item-comment .image img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+    cursor: pointer;
+}
+.comment-container .item-comment .info {
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+    width: 100%;
+}
+.comment-container .item-comment .info .line {
+    height: 1px;
+    background: #ccc;
+    width: 50px;
+}
+.comment-container .item-comment .info .info-user {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+}
+.item-comment .info .info-user .name {
+    cursor: pointer;
+    font-size: 15px;
+}
+.item-comment .info .info-user .time {
+    color: #ccc;
+    font-size: 15px;
+}
+.item-comment .info .row pre{
+    white-space: pre-wrap;
+    font-size: 15px;
+}
+
+
+/* Format Replay */
+.item-comment .info .replay {
+    width: calc(100% - 60px);
+    margin-top: 5px;
+}
+.item-comment .info .replay .replay-button {
+    display: flex;
+    flex-direction: row;
+}
+.item-comment .info .replay .replay-button button {
+    padding: 5px 10px;
+    outline: none;
+    border: none;
+    font-size: 15px;
+    background: transparent;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .3s all ease;
+    cursor: pointer;
+}
+.item-comment .info .replay .replay-button button:hover {
+    background: #3f3f3f;
+    transition: .3s all ease;
+}
+
+.item-comment .info .replay .addForm-container {
+    display: flex;
+    flex-direction: row;
+}
+.item-comment .info .replay .addForm-container img{
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.item-comment .info .replay .addForm-container form {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    width: 100%;
+    margin-right: 10px;
+}
+.item-comment .info .replay .addForm-container form textarea {
+    resize: none;
+    height: auto;
+    width: 100%;
+    background: transparent;
+    overflow: hidden;
+    outline: none;
+    border: none;
+    min-height: 10px;
+    border-bottom: 1px solid #272727;
+    word-wrap: break-word;
+    line-height: 1.5;
+}
+.item-comment .info .replay .addForm-container form textarea:focus {
+    border-bottom: 1px solid white;
+}
+.item-comment .info .replay .addForm-container form .button-comm {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    margin-top: 5px;
+}
+.item-comment .info .replay .addForm-container form .button-comm button {
+    padding: 8px 15px;
+    outline: none;
+    border: none;
+    font-size: 15px;
+    background: transparent;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .3s all ease;
+    cursor: pointer;
+}
+.item-comment .info .replay .addForm-container form .button-comm .submit {
+    background: #272727;
+    transition: .3s all ease;
+}
+.item-comment .info .replay .addForm-container form .button-comm .cancel {
+    background: transparent;
+    transition: .3s all ease;
+}
+.item-comment .info .replay .addForm-container form .button-comm .submit:hover,
+.item-comment .info .replay .addForm-container form .button-comm .cancel:hover {
+    background: #3f3f3f;
+    transition: .3s all ease;
+}
+.item-comment .info .addForm-container .fixed-text {
+    width: 100%;
+}
+.item-comment .info .addForm-container .fixed-text span{
+    cursor: pointer;
+    background: #3ba0f6;
+}
+
+.comment-container .replay .showReplayComment {
+    width: calc(100% - 60px);
+    margin-top: 5px;
+}
+.comment-container .replay .showReplayComment button{
+    background: transparent;
+    outline: none;
+    border: none;
+    color: #cc0000;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 10px;
+    cursor: pointer;
+    transition: .3s all ease;
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+.comment-container .replay .showReplayComment button:hover {
+    background: rgb(59, 160, 246, 0.3);
+    transition: .3s all ease;
+}
+.comment-container .replay .showReplayComment button i,
+.comment-container .replay .showReplayComment button span {
+    color: #3ba0f6;
+}
+.comment-container .replay .showReplayComment .container-replay {
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.comment-container .replay .showReplayComment .item-replay {
+    display: flex;
+    flex-direction: row;
+    width: auto;
+}
+.replay .showReplayComment .item-replay .image-replay { 
+    margin-right: 10px;
+}
+.replay .showReplayComment .item-replay .image-replay img {
+    width: 25px;
+    height: 25px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.replay .showReplayComment .item-replay .info-replay {
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+    width: 100%;
+}
+.replay .showReplayComment .item-replay .info-replay .line {
+    height: 1px;
+    background: #ccc;
+    width: 50px;
+}
+.replay .showReplayComment .item-replay .info-replay .info-user-replay {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+}
+.item-replay .info-replay .info-user-replay .name {
+    cursor: pointer;
+    font-size: 15px;
+}
+.item-replay .info-replay .info-user-replay .time {
+    color: #ccc;
+    font-size: 15px;
+}
+
+.item-replay .info-replay .row p{
+    white-space: pre-wrap;
+    font-size: 15px;
+    word-wrap: break-word;
+}
+
+.item-replay .info-replay .row p span {
+    color: #3ba0f6;
+    cursor: pointer;
+}
+
+/* ===================================== */
+.watch .secondary {
+    width: 400px;
+    height: auto;
+}
+.watch .secondary .hashtag-box {
+    position: fixed;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    max-width: 400px;
+    align-items: center;
+    background: #0f0f0f;
+    transition: margin-top 0.01s ease; 
+    z-index: 20;   
+}
+.hashtag-box .button-box {
+    width: 30px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.hashtag-box button {
+    outline: none;
+    border: none;
+    width: 100%;
+    height: 30px;
+    background: transparent;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.hashtag-box button:hover {
+    background: #3f3f3f;
+}
+.hashtag-box .hashtag-container {
+    display: flex;
+    flex-direction: row;
+    overflow-y: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+    transition: .3s all ease;
+    width: calc(100% - 60px);
+    align-items: center;
+    gap: 10px;
+}
+.hashtag-box .filter-container::-webkit-scrollbar {
+    display: none;
+}
+.hashtag-box .filter-hashtag {
+    background: none;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px 10px;
+    background: #272727;
+    transition: .3s all ease;
+}
+.hashtag-box .filter-hashtag:hover {
+    background: #3f3f3f;
+}
+.hashtag-box .filter-hashtag {
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-size: 15px;
+    transition: .3s all ease;
+}
+.hashtag-box .filter-hashtag.active {
+    background: white;
+    color: black;
+    transition: .3s all ease;
+}
+
+.watch .secondary .hashtag-video-box {
+    margin-top: 45px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.watch .secondary .hashtag-video {
+    display: flex;
+    flex-direction: row;
+    width: 400px;
+    cursor: pointer;
+}
+.hashtag-video .video-box {
+    position: relative;
+    width: 170px;
+    min-height: 90px;
+    height: auto;
+    border-radius: 10px;
+    margin-right: 10px;
+}
+.hashtag-video .video-box video {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+.hashtag-video .video-box .duration-time {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: #0f0f0f;
+    padding: 1px 5px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.hashtag-video .info-box {
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - 170px);
+    gap: 3px;
+}
+.hashtag-video .info-box .row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+}
+.hashtag-video .info-box .row p{
+    font-size: 14px;
+    color: #ccc;
+}
+.hashtag-video .info-box .row .nameSong {
+    font-weight: bold;
+    color: white;
+}
+.hashtag-video .info-box .row img {
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+}
+.hashtag-video .info-box .row .z-index10 {
+    z-index: 10;
+}
+.hashtag-video .info-box .row i {
+    font-size: 5px;
+    color: #ccc;
+}

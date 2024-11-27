@@ -1,0 +1,367 @@
+<div class="watch-container" *ngIf="video">
+    <div class="watch">
+        <div class="primary">
+            <div class="video" (mouseenter)="showCommand = false" (mouseleave)="showCommand = true">
+                <div class="video-box" (click)="togglePlayPauseOnVideo()">
+                    <div class="loading-video" *ngIf="loading"></div>
+                
+                    <video #videoPlayer *ngIf="videoUrl" [autoplay]="isAutoPlayEnabled"
+                    (loadedmetadata)="onMetadataLoaded()"
+                    (play)="onVideoPlay()" (pause)="onVideoPause()"
+                    (timeupdate)="onTimeUpdate()"    
+                    >
+                        <source [src]="videoUrl" type="video/mp4">
+                    </video>
+                    <div class="logo-play" *ngIf="!isPlaying">
+                        <svg height="100%" width="100^" viewBox="0 0 68 48">
+                            <path class="bg" 
+                                d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,
+                                    .13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,
+                                    2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,
+                                    24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,
+                                    5.41,5.42,6.19 C12.21,47.87,34,48,34,
+                                    48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,
+                                    5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,
+                                    66.52,7.74z" 
+                                >
+                            </path>
+                            <path class="icon" d="M 45,24 27,14 27,34"></path>
+                        </svg>
+                    </div>
+                </div>
+                
+                <div class="settings-command" *ngIf="isCommandSettings">
+                    <div class="playspeed row-sett" *ngIf="!isOptionsVisible" (click)="toggleSettings()">
+                        <div class="row">
+                            <i class="fa-regular fa-circle-play"></i>
+                            <span>Playback speed</span>
+                        </div>
+                        <div class="row">
+                            
+                            <span>{{playSpeed+"x"}}</span>
+                            <i class="fa-solid fa-angle-right icon-right"></i>
+                        </div>
+                    </div>
+                    <div *ngIf="isOptionsVisible" class="playspeed-options">
+                        <span *ngFor="let speed of playSpeedOptions" (click)="onPlaybackSpeedChange(speed)" class="speed">
+                            {{ speed }}x
+                        </span>
+                    </div>
+                </div>
+                <div class="progress-bar-container" *ngIf="!showCommand">
+                   
+                    <input type="range" min="0" [max]="timeDuration" [value]="timeCurrent" (input)="onProgressChange($event)"step="0.01" 
+                        class="progress-bar-input" aria-label="Video Progress">
+                </div>
+                <div class="video-controls" (mouseleave)="showVolumeSlider = false" *ngIf="!showCommand">
+                    <div class="col-video">
+                        <div (click)="togglePlayPause($event)" class="play-pause-btn">
+                            <button *ngIf="isPlaying">
+                                <i class="fa-solid fa-pause"></i>
+                            </button>
+                            <button *ngIf="!isPlaying">
+                                <i class="fa-solid fa-play"></i>
+                            </button>
+                        </div>
+    
+                        <div class="time-display">
+                            <span>{{formatTime(timeCurrent)}} / {{ formatTime(timeDuration)}}</span>
+                        </div>
+                        <div class="volume">
+                            <div class="icon" (click)="toggleMute()">
+                                <i class="fa-solid" (mouseenter)="showVolumeSlider = true"
+                                [ngClass]="volumeIcon" aria-hidden="true"></i>
+                            </div>
+                            <input *ngIf="showVolumeSlider" type="range" id="volume" min="0" max="100" [(ngModel)]="volume" (input)="onVolumeChange($event)" class="volume-input"/>
+                            <div class="volume-per">
+                                <span>{{volume}}%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-video">
+                        <div class="settings" (click)="toggleCommandSettings()">
+                            <i [ngClass]="{'rotated': isCommandSettings}" class="fa-solid fa-gear"></i>
+                        </div>
+                    </div>
+                
+                </div>
+                
+            </div>
+            <div class="info">
+                <div class="prim-command">
+                    <div class="title-song">
+                        <p>{{video.fullNameSong}}</p>
+                    </div>
+                    <div class="channel-command">
+                        <div class="channel-info">
+                            <div class="image" (click)="navigationToChannel(video.channelName)">
+                                <img [src]="userPicture" alt="">
+                            </div>
+                            <div class="channel-name"> 
+                                <p class="channel-text" (click)="navigationToChannel(video.channelName)">{{video.channelName}}</p>
+                                <p class="subscribe" *ngIf="count !==null && count.countSubscribe <=1">{{count.countSubscribe+" subscribe"}}</p>
+                                <p class="subscribe" *ngIf="count !== null && count.countSubscribe > 1">{{count.countSubscribe+" subscribes"}}</p>
+                            </div>
+                            <div class="btn-sub">
+                                <button *ngIf="!isSubscribed" class="btn-subscribe" (click)="subscribeToChannel()">Subscribe</button>
+                                <button *ngIf="isSubscribed" class="btn-unsubscribe" (click)="unsubscribeToChannel()">Unsubscribe</button>
+                            </div>
+                        </div>
+                        <div class="more-com">
+                            <div class="likeDislikeContent">
+                                <div class="like">
+                                    <button *ngIf="!isLike" (click)="addLikeButton()">
+                                        <i class="fa-regular fa-thumbs-up"></i>
+                                        <p *ngIf="countLike !== null">{{countLike.countLike}}</p>
+                                        <p class="text">Click like</p>
+                                    </button>
+                                    <button *ngIf="isLike" (click)="removeLikeButton()">
+                                        <i class="fa-solid fa-thumbs-up"></i>
+                                        <p *ngIf="countLike !== null">{{countLike.countLike}}</p>
+                                        <p class="text">Click unlike</p>
+                                    </button>
+                                </div>
+                                <div class="line"></div>
+                                <div class="dislike">
+                                    <button *ngIf="!isDisLike" (click)="addDisLikeButton()">
+                                        <i class="fa-regular fa-thumbs-down"></i>
+                                        <p *ngIf="countDisLike !== null">{{countDisLike.countDislike}}</p>
+                                        <p class="text">Click dislike</p>
+                                    </button>
+                                    <button *ngIf="isDisLike" (click)="removeDislikeButton()">
+                                        <i class="fa-solid fa-thumbs-down"></i>
+                                        <p *ngIf="countDisLike !== null">{{countDisLike.countDislike}}</p>
+                                        <p class="text">Click undislike</p>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="more" [ngClass]="{'expanded': isExpanded}" (click)="expandOnly($event)">
+                    <div class="date">
+                        <ng-container *ngIf="!isExpanded; else notExpanded">
+                            <p *ngIf="totalViewCount === 1">{{totalViewCount+ " view"}}</p>
+                            <p *ngIf="totalViewCount !== null && totalViewCount > 1 ">{{totalViewCount+ " views"}}</p>
+                            <p *ngIf="totalViewCount === null">0 view</p>
+                            <i class="fa-solid fa-circle"></i>
+                            <p>{{video.elapsedTime+" ago"}}</p>
+                        </ng-container>
+                        <ng-template #notExpanded>
+                            <p *ngIf="totalViewCount === 1">{{totalViewCount+ " view"}}</p>
+                            <p *ngIf="totalViewCount !== null && totalViewCount > 1 ">{{totalViewCount+ " views"}}</p>
+                            <p *ngIf="totalViewCount === null">0 view</p>
+                            <i class="fa-solid fa-circle"></i>
+                            <p *ngIf="totalViewForUserInVideo && totalViewForUserInVideo.countViewUser <= 1">{{totalViewForUserInVideo.countViewUser+" your view"}}</p>
+                            <p *ngIf="totalViewForUserInVideo && totalViewForUserInVideo.countViewUser > 1 ">{{totalViewForUserInVideo.countViewUser+ " your views"}}</p>
+                            <i class="fa-solid fa-circle"></i>
+                            <p>{{"Premiered "+formatDate(video.dateOfCreation)}}</p>
+                        </ng-template>
+                    </div>
+                    <div class="hashtag">
+                        <p *ngFor="let hashtag of video.selectHashtag" (click)="navigationToHashtag(hashtag)">
+                            {{hashtag}}
+                        </p>
+                        <p *ngFor="let hashtag of video.addHashtag" (click)="navigationToHashtag(hashtag)">
+                            {{hashtag}}
+                        </p>
+                    </div>
+                    <p *ngIf="!isExpanded" class="lessMore" (click)="toggleExpand($event)">{{isExpanded ? 'Show less' : '...more'}}</p>       
+                    <ng-container *ngIf="isExpanded">
+                        <div class="description">
+                            <pre>{{video.descriptionVideo}}</pre>
+                        </div>
+                        <div class="line"></div>
+                        <div class="lyrics">
+                            <p class="text">Lyrics</p>
+                            <pre>{{video.lyrics}}</pre>
+                        </div>
+                        <div class="lessDiv"></div>
+                        <p class="lessMore" style="margin-top: 30px;"
+                        (click)="toggleExpand($event)">{{isExpanded ? 'Show less' : '...more'}}</p>        
+                    </ng-container>
+                </div>
+            </div>
+        
+            <div class="comment-container">
+                <div class="title">
+                    <h3 *ngIf="allCommentForVideo.length <= 1">
+                        {{allCommentForVideo.length+" Comment"}}
+                    </h3>
+                    <h3 *ngIf="allCommentForVideo.length > 1">
+                        {{allCommentForVideo.length+getTotalReplay()+" Comments"}}
+                    </h3>
+                    <div class="subTitle">
+                        <i class="fa-solid fa-circle"></i>
+                        <h5 *ngIf="allCommentForVideo.length <= 1">
+                            {{allCommentForVideo.length+" Basic Comment"}}
+                        </h5>
+                        <h5 *ngIf="allCommentForVideo.length > 1">
+                            {{allCommentForVideo.length+" Basic Comments"}}
+                        </h5>
+                    </div>
+                    <div class="subTitle">
+                        <i class="fa-solid fa-circle"></i>
+                        <h5 *ngIf="getTotalReplay() > 1">{{getTotalReplay()+" Replies"}}</h5>
+                        <h5 *ngIf="getTotalReplay() <= 1">{{getTotalReplay()+" Replay"}}</h5>
+                    </div>
+                </div>
+                <div class="add-comment">
+                    <img [src]="imageInComment" alt="">
+                    <form [formGroup]="commentForm" (ngSubmit)="addComment()">
+                        <textarea rows="1" formControlName="commentContent" placeholder="Add Comment ...."
+                        (input)="onInput($event)"
+                        (click)="clickShowComment()"></textarea>
+                        <div class="button-comm" *ngIf="isButtonCommentVisible">
+                            <button class="cancel" (click)="resetFormComment()">Cancel</button>
+                            <button class="submit" type="submit" [disabled]="commentForm.invalid">Comment</button>
+                        </div> 
+                    </form>
+                </div>
+                
+                
+                <div class="allComment">
+                    <div *ngIf="allCommentForVideo.length === 0">
+                        <span>No have comment for video</span>
+                    </div>
+                    <div *ngIf="allCommentForVideo.length > 0" class="container-comment">
+                        <div *ngFor="let comment of allCommentForVideo" class="item-comment">
+                            <div class="col image">
+                                <img [src]="userPictureUrl[comment.imageProfile].url" 
+                                (click)="navigationToChannel(comment.channelNameComment)" alt="">
+                            </div>
+                            <div class="col info">
+                                <div class="row info-user">
+                                    <span class="name" (click)="navigationToChannel(comment.channelNameComment)">{{"@"+comment.firstName+comment.lastName}}</span>
+                                    <span class="time">{{comment.elapsedTime+" ago"}}</span>
+                                </div>
+                                <div class="line"></div>
+                                <div class="row">
+                                    <pre>{{comment.commentContent}}</pre>
+                                </div>
+                                
+                                <div class="replay">
+                                    <div class="replay-button">
+                                        <button (click)="btnShowAddReplay(comment.id)">Replay</button>
+                                    </div>
+                                    <div class="addForm-container" *ngIf="showAddReplay[comment.id]" >
+                                        <img [src]="imageInComment" alt="">
+                                        <form [formGroup]="replayCommentForm[comment.id]" 
+                                            (ngSubmit)="addReplay(comment.id)" class="formReplay">
+                                            <div class="fixed-text">
+                                                <span (click)="navigationToChannel(comment.channelNameComment)">{{fixedText[comment.id]}}</span>
+                                            </div>
+                                            <textarea rows="1" formControlName="commentContent" placeholder="Add Comment ...."
+                                            (input)="onInput($event)" id="textarea-{{comment.id}}"></textarea>
+                                            <div class="button-comm">
+                                                <button class="cancel" (click)="showAddReplay[comment.id] = false">Cancel</button>
+                                                <button class="submit" type="submit">Replay</button>
+                                            </div> 
+                                        </form>
+                                    </div>
+                                    <div class="showReplayComment">
+                                        <button *ngIf="allReplayForComment[comment.id] && allReplayForComment[comment.id].length > 0"
+                                                (click)="toggleReplies(comment.id)">
+                                            <i class="fa-solid fa-chevron-down"></i>
+                                            <span>{{allReplayForComment[comment.id].length}}</span>
+                                            <span>Replies</span>
+                                        </button>
+                                    
+                                        <div *ngIf="repliesVisible[comment.id] && allReplayForComment[comment.id].length > 0" class="container-replay">
+                                            <div *ngFor="let replay of allReplayForComment[comment.id]" class="item-replay"> 
+                                                <div class="image-replay">
+                                                    <img [src]="userPictureUrl[replay.imageProfile].url" alt=""
+                                                        (click)="navigationToChannel(replay.channelNameComment)">
+                                                </div>
+                                                <div class="info-replay">
+                                                    <div class="row info-user-replay">
+                                                        <span class="name" (click)="navigationToChannel(replay.channelNameComment)">{{"@"+replay.firstName+replay.lastName}}</span>
+                                                        <span class="time">{{replay.elapsedTime+" ago"}}</span>
+                                                    </div>
+                                                    <div class="line"></div>
+                                                    <div class="row">
+                                                        <p>
+                                                            <span (click)="navigationToChannel(comment.channelNameComment)">{{"@"+comment.firstName+comment.lastName}}</span>
+                                                            {{replay.commentContent}}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                               
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="secondary">
+            <div class="hashtag-box" #hashtagBox>
+                <div class="button-box">
+                    <button (click)="scrollLeft()">
+                        <i class="fa-solid fa-angle-left"></i>
+                    </button>
+                </div>
+                <div class="hashtag-container" #filterItems>
+                    <p class="filter-hashtag" [ngClass]="{'active': filterApplied === ''}" (click)="clearFilter()">
+                        All
+                    </p>
+                    <div *ngFor="let hashtag of video.addHashtag" (click)="filterOnLoadSimilarHashtag(hashtag)">
+                        <p class="filter-hashtag" [ngClass]="{'active': filterApplied === hashtag}">{{hashtag}}</p>
+                    </div>
+                    <div *ngFor="let hashtag of video.selectHashtag" (click)="filterOnLoadSimilarHashtag(hashtag)">
+                        <p class="filter-hashtag" [ngClass]="{'active': filterApplied === hashtag}">{{hashtag}}</p>
+                    </div>
+                </div>
+                <div class="button-box">
+                    <button (click)="scrollRight()">
+                        <i class="fa-solid fa-angle-right"></i>
+                    </button> 
+                </div> 
+            </div>
+                      
+
+            <div class="hashtag-video-box">
+                <div *ngFor="let similaHashtag of filterSimilarHashtagVideos" class="hashtag-video"
+                (click)="navigationToVideo(similaHashtag.id)"
+                >
+                    <div class="video-box">
+                        <video *ngIf="videoUrls[similaHashtag.videoName].url"
+                            #videoElement
+                            (loadedmetadata)="onMetadataLoadedHashtag(videoElement)"
+                            >
+                            <source [src]="videoUrls[similaHashtag.videoName].url" type="video/mp4">
+                        </video>
+                        <div class="duration-time">
+                            <p>{{similaHashtag.durationVideo}}</p>
+                        </div>
+                    </div>
+                    <div class="info-box">
+                        <div class="row">
+                            <p class="nameSong">{{truncateText(similaHashtag.fullNameSong, 55)}}</p>
+                        </div>
+                        <div class="row">
+                            <img *ngIf="userPictureUrlVideoHashtag[similaHashtag.imageProfile].url" 
+                            [src]="userPictureUrlVideoHashtag[similaHashtag.imageProfile].url" alt=""
+                            (click)="navigationToChannel(similaHashtag.channelName)" class="z-index10">
+                            <p class="z-index10" (click)="navigationToChannel(similaHashtag.channelName)">{{similaHashtag.channelName}}</p>
+                        </div>
+                        <div class="row">
+                            <p *ngIf="similaHashtag.viewCount <= 1">{{similaHashtag.viewCount+" view"}}</p>
+                            <p *ngIf="similaHashtag.viewCount > 1 ">{{similaHashtag.viewCount+ " views"}}</p>
+                            <i class="fa-solid fa-circle"></i>
+                            <p>{{similaHashtag.elapsedTime}}</p>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+    </div>
+</div>

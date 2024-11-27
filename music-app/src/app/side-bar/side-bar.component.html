@@ -1,0 +1,75 @@
+<aside class="sidenav" [ngClass]="{'collapsed': isCollapsed}" *ngIf="isSidebarVisible">
+   <ng-container *ngIf="!isCollapsed; else collapsedContent">
+    <ul class="sidenav-list">
+        <li class="sidenav-item" *ngFor="let data of navDataHead">
+            <a href="" class="sidenav-link">
+                <i class="sidenav-icon" [class]="data.icon"></i>
+                <span class="sidenav-label">{{data.label}}</span>
+            </a>
+        </li>
+    </ul>
+    
+    <div class="aside-line"></div>
+
+    <ul class="sidenav-list">
+        <div class="sidenav-container-section">
+            <span class="sidenav-title-section">Account</span>
+        </div>
+        <li class="sidenav-item" *ngFor="let data of navDataMain">
+            <a [routerLink]="data.routerLink" class="sidenav-link">
+                <i class="sidenav-icon" [class]="data.icon"></i>
+                <span class="sidenav-label">{{data.label}}</span>
+            </a>
+        </li>
+    </ul>
+    
+    <div class="aside-line"></div>
+
+    <ul class="sidenav-list">
+        <div class="sidenav-container-section">
+            <span class="sidenav-title-section">Explore</span>
+        </div>
+        <li class="sidenav-item" *ngFor="let data of navDataExplore">
+            <a href="" class="sidenav-link">
+                <i class="sidenav-icon" [class]="data.icon"></i>
+                <span class="sidenav-label">{{data.label}}</span>
+            </a>
+        </li>
+    </ul>
+
+    <div class="aside-line"></div>
+
+    <ul class="sidenav-list">
+        <li class="sidenav-item" *ngFor="let data of navDataFoot">
+            <a [routerLink]="data.routerLink" class="sidenav-link">
+                <i class="sidenav-icon" [class]="data.icon"></i>
+                <span class="sidenav-label">{{data.label}}</span>
+            </a>
+        </li>
+    </ul>
+
+    <div class="aside-line"></div>
+    
+    <button (click)="onLogout()" class="aside-logout-button">
+        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+        <span>Logout</span>
+    </button>
+
+   </ng-container>
+   
+    
+   <ng-template #collapsedContent>
+        <ul class="sidenav-resize-list">
+            <li class="sidenav-resize-item" *ngFor="let data of navDataSideMin">
+                <a href="" class="sidenav-resize-link">
+                    <i class="sidenav-resize-icon" [class]="data.icon"></i>
+                    <span class="sidenav-resize-label">{{data.label}}</span>
+                </a>
+            </li>
+        </ul>
+   </ng-template>
+
+
+
+
+</aside>

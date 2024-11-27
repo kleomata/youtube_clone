@@ -1,0 +1,473 @@
+.container{
+    background: #0f0f0f;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+.container::after,
+.container::before {
+    content: '';
+    position: absolute;
+    width: 700px;
+    height: 700px;
+    background: #ff0000;
+    border-radius: 40px;
+    transform: rotate(45deg);
+}
+.container::after{
+    left: -200px;
+    bottom: -100px;
+}
+.container::before{
+    right: -200px;
+    top: -100px;
+}
+.image-log{
+    position: absolute;
+    top: 30px;
+    left: 50px;
+}
+.box {
+    width: 1100px;
+    height: 700px;
+    background: #2727277a;
+    box-shadow: 0px 0px 5px #272727;
+    border-radius: 20px;
+    z-index: 10;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+}
+.box::after,
+.box::before{
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 30px;
+    background: #2727277a;
+    border-radius: 20px;
+    filter: blur(2px);
+}
+.box::after{
+    left: -150px;
+    top: -70px;
+}
+.box::before{
+    right: -150px;
+    bottom: -70px;
+}
+
+/* Box Image */
+.box-image{
+    height: 100%;
+    width: 50%;
+    border-radius: 20px 20px 20px 20px;
+    position: relative; 
+}
+.box-image-logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 10;
+}
+
+
+/*==================================*/
+
+/* Box Register */
+.box-register{
+    height: 100%;
+    width: 50%;
+    padding: 50px;
+    border-radius: 20px 0px 0px 20px;
+    display: flex;
+    flex-direction: column;
+}
+.sec-register {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.content-head{
+    margin-bottom: 30px;
+}
+
+
+.form-register-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.form-register-container .register {
+    width: 100%;
+    height: 486px;
+}
+
+.form-register-container .register .success-message {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.register .success-message .success-icon-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+.register .success-message .success-icon-container i {
+    color: rgb(0, 255, 0);
+    border: 3px solid rgba(0, 255, 0);
+    border-radius: 50%;
+    font-weight: bold;
+    padding: 30px;
+    font-size: 50px;
+}
+.register .success-message .success-icon-container h2 {
+    text-shadow: 0px 0px 10px rgb(0, 255, 0);
+    font-weight: bold;
+    font-size: 30px;
+}
+.register .success-message .success-icon-container p {
+    font-size: 12px;
+    text-align: center;
+}
+
+.sec-middle{
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
+.line{
+    width: 200px;
+    height: 1px;
+    background: white;
+}
+.middle-line{
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.register .success-message .success-button-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+}
+
+.register .success-message .success-button-container button {
+    background: #ff0000;
+    border: none;
+    outline: none;
+    padding: 10px 20px;
+    width: 200px;
+    height: 40px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: .5s all ease;
+    font-weight: bold;
+}
+.register .success-message .success-button-container button:hover{
+    background: #cc0000;
+    box-shadow: 0px 0px 10px #cc0000;
+}
+.register .success-message .success-copyright-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 35px;
+}
+.register .success-message .success-copyright-container .copyright{
+    width: 100%;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+}
+
+
+
+
+.form-register-container .register .all-form-register {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+/* Step Circle Number */
+.step-indicator {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.step-indicator .step-circle {
+    width: 40px;
+    height: 40px;
+    border: 2px solid transparent;
+    border-radius: 50%;
+    background-color: #272727;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    z-index: 1;
+}
+.step-indicator .step-circle i {
+    color: white;
+}
+
+.step-indicator .step-circle.active {
+    border: 2px solid #ff0000;
+}
+.step-indicator .step-circle.completed {
+    background: #ff0000;
+    border: 2px solid #ff0000;
+}
+
+.step-indicator .step-line {
+    height: 4px;
+    background: #272727;
+    flex: 1;
+}
+
+.step-indicator .step-line.completed {
+    background: #ff0000;
+}
+
+.step-circle:last-child + .step-line {
+    display: none;
+}
+
+
+
+/* Register Form */
+.form-register {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    color: black;
+}
+
+.form-register .step {
+    display: flex;
+    flex-direction: column;
+    height: 356px;
+    width: 100%;
+}
+
+.form-register .step .step-col {
+    display: flex;  
+    flex-direction: row;
+    gap: 50px
+}
+
+.form-register .step .step-row {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-register .step .step-row label {
+    font-weight: bold;
+}
+
+.form-register .step .step-row input {
+    border: none;
+    border-bottom: 1px solid white; 
+    outline: none;
+    background: none;
+    height: 40px;
+    width: 200px;
+    border-radius: 10px;
+    padding: 10px;
+}
+.form-register .step .step-row select {
+    border: none;
+    border-bottom: 1px solid white;
+    outline: none;
+    background: none;
+    height: 40px;
+    width: 200px;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.form-register .step .step-row option {
+    background-color: #f0f0f0; 
+    color: #333; 
+    padding: 10px; 
+}
+
+
+.form-register .step .step-row .container-error-message {
+    height: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.form-register .step .step-row .container-error-message .error-message {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.form-register .step .step-row .container-error-message .error-message div{
+
+    font-size: 12px;
+    color: #ff0000;
+}
+
+
+.form-register .step .step-middle {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.form-register .step .step-row .input-image {
+    display: flex;
+    flex-direction: column;
+}
+.form-register .step .step-row .input-image .image-preview {
+    width: 300px; 
+    height: 300px;
+    border: 1px solid transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px; 
+    position: relative;
+    cursor: pointer;
+    transition: .3s all ease;
+    border-radius: 50%;
+    border: 1px solid #ff6a00;
+}
+.form-register .step .step-row .input-image .image-preview:hover {
+    transition: .3s all ease;
+    border: 1px solid rgb(255, 106, 0);
+}
+.form-register .step .step-row .input-image .image-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+}
+.form-register .step .step-row .input-image .image-preview button {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border: none;
+    outline: none;
+    background: rgba(255, 106, 0, .3);
+    opacity: 0;
+    transition: .3s all ease;
+    cursor: pointer;
+    color: white;
+    font-size: 20px;
+    border-radius: 50%;
+}
+.form-register .step .step-row .input-image .image-preview:hover button {
+    opacity: 1;
+} 
+.form-register .step .step-row .input-image .add-image {
+    width: 300px;
+    height: 300px;
+    border: 2px dashed #ff6a00;
+    display: flex;
+    align-items: center;
+    justify-content: center;  
+    cursor: pointer;
+    transition: .3s all ease;
+    border-radius: 50%;
+}
+.form-register .step .step-row .input-image .add-image i {
+    font-size: 25px;
+    color: #ff6a00;
+    transition: .3s all ease;
+}
+.form-register .step .step-row .input-image .add-image:hover {
+    background: rgba(255, 106, 0, .3);
+    transition: .3s all ease;
+}
+.form-register .step .step-row .input-image .add-image:hover i {
+    color: white;
+    transition: .3s all ease;
+}
+
+
+
+
+
+
+
+.form-register .button-container {
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.form-register .button-container button {
+    height: 40px;
+    width: 100px;
+    cursor: pointer;
+    color: white;
+    background: #ff0000;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    transition: .5s all ease;
+    font-weight: bold;
+}
+
+.form-register .button-container button:hover{
+    background: #cc0000;
+    box-shadow: 0px 0px 10px #cc0000;
+}
+
+
+.sec-login{
+    height: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 26px;
+}
+.login-text-link{
+    text-decoration: none;
+    color: #ff0000;
+}
+.login-text-link p{
+    color: red;
+}
+.login-text-link p:hover{
+    color: #cc0000;
+    text-shadow: 0px 0px 10px #cc0000;
+}
+
+
+
+

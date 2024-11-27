@@ -1,0 +1,289 @@
+<div class="container">
+    <img class="image-log" src="../../assets/images/youtube_logo.png" alt="">
+    <div class="box">
+
+         <div class="box-image">
+            <img class="box-image-logo" src="../../assets/images/youtube_logo.png" alt="">
+            <app-slideshow-login-image></app-slideshow-login-image>
+        
+        </div>
+
+        <div class="box-register">
+
+            <div class="sec-register">
+                <div class="content-head">
+                    <h1>Register</h1>
+                </div>
+
+                <div class="form-register-container">
+                    <div class="register">
+                        <div *ngIf="showSuccessMessage" class="success-message">
+                            <div class="success-icon-container">
+                                <i class="fa-solid fa-check"></i>
+                                <h2>Success!</h2>
+                                <p>Congratulations! Your registration has been completed successfully. You can now log in and start using our services.</p>
+                            </div>
+                            <div class="sec-middle">
+                                <div class="line"></div>
+                                <div class="middle-line">new</div>
+                                <div class="line"></div>
+                            </div>
+                            <div class="success-button-container">
+                                <p>If you wish to set up a new account, please click the button below to begin the registration process.</p>
+                                <button (click)="resetAndRegisterNewUser()">Register New User</button>
+                            </div>
+                            <div class="success-copyright-container">
+                                <p class="copyright">Copyright © 2024 Youtube. All Rights Reserved.</p>
+                            </div>
+
+                        </div>
+
+                        <div *ngIf="!showSuccessMessage" class="all-form-register">
+                            <div class="step-indicator">
+                                <div class="step-circle" [ngClass]="{'active': currentStep === 1, 'completed': currentStep > 1}">
+                                    <ng-container *ngIf="currentStep > 1 || isStepCompleted(1)">
+                                        <i class="fa-solid fa-check"></i>
+                                    </ng-container>
+                                    <ng-container *ngIf="currentStep === 1 && !isStepCompleted(1)">1</ng-container>
+                                </div>
+                                <div class="step-line" [ngClass]="{'active': currentStep > 1, 'completed': currentStep > 1}"></div>
+                                
+                                <div class="step-circle" [ngClass]="{'active': currentStep === 2, 'completed': currentStep > 2}">
+                                    <ng-container *ngIf="currentStep > 2 || isStepCompleted(2)">
+                                        <i class="fa-solid fa-check"></i>
+                                    </ng-container>
+                                    <ng-container *ngIf="currentStep <= 2 && !isStepCompleted(2)">2</ng-container>
+                                </div>
+                                <div class="step-line" [ngClass]="{'active': currentStep > 2, 'completed': currentStep > 2}"></div>
+                                
+                                <div class="step-circle" [ngClass]="{'active': currentStep === 3, 'completed': currentStep > 3}">
+                                    <ng-container *ngIf="currentStep > 3 || isStepCompleted(3)">
+                                        <i class="fa-solid fa-check"></i>
+                                    </ng-container>
+                                    <ng-container *ngIf="currentStep <= 3 && !isStepCompleted(3)">3</ng-container>
+                                </div>
+                                <div class="step-line" [ngClass]="{'active': currentStep > 3, 'completed': currentStep > 3}"></div>
+                                
+                                <div class="step-circle" [ngClass]="{'active': currentStep === 4, 'completed': currentStep > 4}">
+                                    <ng-container *ngIf="currentStep > 4 || isStepCompleted(4)">
+                                        <i class="fa-solid fa-check"></i>
+                                    </ng-container>
+                                    <ng-container *ngIf="currentStep <= 4 && !isStepCompleted(4)">4</ng-container>
+                                </div>
+                            </div>
+
+                            <form class="form-register" [formGroup]="register" action="">
+
+                                <!-- Step 1 -->
+                                <div *ngIf="currentStep === 1" class="step">
+                                    <div class="step-col">
+                                            <div class="step-row">
+                                                <label for="firstName">First Name</label>
+                                                <input id="firstName" formControlName="firstName" type="text" />
+                                                <div class="container-error-message">
+                                                    <div class="error-message" *ngIf="isSubmitted">
+                                                        <div *ngIf="register.get('firstName')?.hasError('required')">First Name is required</div>
+                                                        <div *ngIf="register.get('firstName')?.hasError('invalidName')">First Name must start with a capital letter and contain only letters</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="step-row">
+                                                <label for="lastName">Last Name</label>
+                                                <input id="lastName" formControlName="lastName" type="text" />
+                                                <div class="container-error-message">
+                                                    <div class="error-message" *ngIf="isSubmitted">
+                                                        <div *ngIf="register.get('lastName')?.hasError('required')">Last Name is required</div>
+                                                        <div *ngIf="register.get('lastName')?.hasError('invalidName')">Last Name must start with a capital letter and contain only letters</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </div>
+                                        
+                                    <div class="step-col">
+                                            <div class="step-row">
+                                                <label for="birthdate">Date of Birth</label>
+                                                <input id="birthdate" formControlName="birthdate" type="date" />
+                                                <div class="container-error-message">
+                                                    <div class="error-message" *ngIf="isSubmitted">
+                                                        <div *ngIf="register.get('birthdate')?.hasError('required')">Date of Birth is required</div>
+                                                        <div *ngIf="register.get('birthdate')?.hasError('invalidBirthdate')">You must be at least 18 years old</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="step-row">
+                                                <label for="gender">Gender</label>
+                                                <select id="gender" formControlName="gender">
+                                                    <option value="">Select...</option>
+                                                    <option value="male">Male</option>
+                                                    <option value="female">Female</option>
+                                                </select>
+                                                <div class="container-error-message">
+                                                    <div class="error-message" *ngIf="isSubmitted">
+                                                        <div *ngIf="register.get('gender')?.hasError('required')">Gender is required</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </div>
+
+                                    <div class="step-row">
+                                        <label for="email">Email</label>
+                                        <input id="email" formControlName="email" type="email" style="width: 300px;"/>
+                                        <div class="container-error-message">
+                                            <div class="error-message" *ngIf="isSubmitted">
+                                                <div *ngIf="register.get('email')?.hasError('required')">Email is required</div>
+                                                <div *ngIf="register.get('email')?.hasError('invalidEmail')">Email must be in the format: example&#64;gmail.com, example&#64;hotmail.com, or example&#64;outlook.com</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="step-row">
+                                        <label for="phone">Phone</label>
+                                        <input id="phone" formControlName="phone" type="text" style="width: 300px;"/>
+                                        <div class="container-error-message">
+                                            <div class="error-message" *ngIf="isSubmitted">
+                                                <div *ngIf="register.get('phone')?.hasError('required')">Phone is required</div>
+                                                <div *ngIf="register.get('phone')?.hasError('invalidPhone')">Phone must start with '+' and contain only numbers (up to 16 characters)</div>
+                                            </div>
+                                        </div>  
+
+                                    </div>
+                                    
+                                </div>
+
+                                <!-- Step 2 -->
+                                <div *ngIf="currentStep === 2" class="step">
+                                    
+                                <!-- Country Selection -->
+                                    <div class="step-row">
+                                        <label for="country">Country</label>
+                                        <select id="country" formControlName="country">
+                                        <option value="" disabled>Select a country</option>
+                                        <option *ngFor="let country of countries" [value]="country.isoCode">{{country.flag}} {{ country.name }}</option>
+                                        </select>
+                                        <div class="container-error-message">
+                                        <div class="error-message" *ngIf="isSubmitted">
+                                            <div *ngIf="register.get('country')?.hasError('required')">Country is required</div>
+                                        </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- State Selection -->
+                                    <div class="step-row">
+                                        <label for="state">State</label>
+                                        <select id="state" formControlName="state" [disabled]="!states.length">
+                                        <option value="" disabled>Select a state</option>
+                                        <option *ngFor="let state of states" [value]="state.isoCode">{{ state.name }}</option>
+                                        </select>
+                                        <div class="container-error-message">
+                                        <div class="error-message" *ngIf="isSubmitted">
+                                            <div *ngIf="register.get('state')?.hasError('required')">State is required</div>
+                                        </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- City Selection -->
+                                    <div class="step-row">
+                                        <label for="city">City</label>
+                                        <select id="city" formControlName="city" [disabled]="!cities.length">
+                                        <option value="" disabled>Select a city</option>
+                                        <option *ngFor="let city of cities" [value]="city.name">{{ city.name }}</option>
+                                        </select>
+                                        <div class="container-error-message">
+                                        <div class="error-message" *ngIf="isSubmitted">
+                                            <div *ngIf="register.get('city')?.hasError('required')">City is required</div>
+                                        </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="step-row">
+                                        <label for="specificAddress">Specific Address</label>
+                                        <input id="specificAddress" formControlName="specificAddress" type="text" />
+                                        <div class="container-error-message">
+                                            <div class="error-message" *ngIf="isSubmitted">
+                                                <div *ngIf="register.get('specificAddress')?.hasError('required')">Specific Address is required</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>   
+
+                                <!-- Step 3 -->
+                                <div *ngIf="currentStep === 3" class="step">
+                                    <div class="step-row">
+                                        <div class="input-image">
+                                            <div class="show-images">
+                                                <div *ngIf="imagesPreviews" class="image-preview">
+                                                    <img [src]="imagesPreviews" alt="">
+                                                    <button (click)="removeImage()">
+                                                        <i class="fa-solid fa-trash-can"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div *ngIf="!imagesPreviews" class="add-image" (click)="fileInput.click()">
+                                                <input type="file" #fileInput (change)="onFileChange($event)" accept="image/*" style="display: none;">
+                                                <i class="fa-solid fa-plus"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Step 4 -->
+                                <div *ngIf="currentStep === 4" class="step">
+                                    <div class="step-row">
+                                        <label for="username">Username</label>
+                                        <input id="username" formControlName="username" type="text" />
+                                        <div class="container-error-message">
+                                            <div class="error-message" *ngIf="isSubmitted">
+                                                <div *ngIf="register.get('username')?.hasError('required')">Username is required</div>
+                                                <div *ngIf="register.get('username')?.hasError('invalidUsername')">Username must start with a capital letter, be 5-15 characters long, and contain no spaces</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="step-row">
+                                        <label for="password">Password</label>
+                                        <input id="password" formControlName="password" type="password" />
+                                        <div class="container-error-message">
+                                            <div class="error-message" *ngIf="isSubmitted">
+                                                <div *ngIf="register.get('password')?.hasError('required')">Password is required</div>
+                                                <div *ngIf="register.get('password')?.hasError('minlength')">Password must be at least 8 characters long</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="step-row">
+                                        <label for="confirmPassword">Confirm Password</label>
+                                        <input id="confirmPassword" formControlName="confirmPassword" type="password" />
+                                        <div class="container-error-message">
+                                            <div class="error-message" *ngIf="isSubmitted">
+                                                <div *ngIf="register.get('confirmPassword')?.hasError('required')">Confirm Password is required</div>
+                                                <div *ngIf="register.get('confirmPassword')?.hasError('passwordMismatch')">Passwords do not match</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="button-container">
+                                    <button (click)="prevStep()" [disabled]="currentStep === 1">Previous</button>
+                                    <button *ngIf="currentStep < 4" (click)="nextStep()">Next</button>
+                                    <button *ngIf="currentStep === 4" (click)="submitForm()">Submit</button>
+                                </div>
+                                
+                            </form>
+
+                        </div>
+                    </div>
+                   
+                 
+                    <div class="sec-login">
+                        <p>Do have an account?</p>
+                        <a [routerLink]="['/login']" class="login-text-link">
+                            <p>Login Youtube now</p>
+                        </a>
+                    </div>
+                </div>     
+            </div>
+        </div>
+    </div>
+</div>

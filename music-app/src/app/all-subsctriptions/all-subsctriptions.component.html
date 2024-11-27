@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="position">
+        <h1 class="title">All Subscriptions</h1>
+        <div class="line"></div>
+        <div *ngIf="subscriptionUser.length === 0" class="subscriptions">
+            <p>No have subscriptions</p>
+        </div>
+        <div *ngIf="subscriptionUser.length > 0" class="subscriptions">
+            <div *ngFor="let subscribe of subscriptionUser" class="forSub">
+                <div (click)="navigationChannelUser(subscribe.channelName)" class="item">
+                    <div class="col">
+                        <div class="image">
+                            <img *ngIf="userPictureUrl[subscribe.picture]"
+                                [src]="userPictureUrl[subscribe.picture].url" alt="">
+                        </div>
+                        <div class="info">
+                            <div class="row">
+                                <p class="name">{{subscribe.firstName + " " + subscribe.lastName}}</p>
+                            </div>
+                            <div class="channel">
+                                <p>{{'@'+subscribe.channelName}}</p>
+                                <i class="fa-solid fa-circle"></i>
+                                <p *ngIf="subscribe.countSubscribe <= 1">{{subscribe.countSubscribe +" subscribe"}}</p> 
+                                <p *ngIf="subscribe.countSubscribe > 1">{{subscribe.countSubscribe +" subscribes"}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="subscribe">
+                    <div class="col">
+                        <button *ngIf="!subscriptionStatus[subscribe.channelId]" class="btn-subscribe" 
+                                (click)="subscribeToChannel(subscribe.channelId)">Subscribe </button>
+                        <button *ngIf="subscriptionStatus[subscribe.channelId]" class="btn-unsubscribe" 
+                                (click)="unsubscribeToChannel(subscribe.channelId)">Unsubscribe</button>
+                    </div>
+                    <div class="time">
+                        <p>{{subscribe.elapsedTime+" ago"}}</p>
+                    </div>
+                </div>
+            </div>        
+        </div>
+    </div>
+</div>

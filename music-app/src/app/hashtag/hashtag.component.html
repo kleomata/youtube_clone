@@ -1,0 +1,77 @@
+<div *ngIf="!hashtagVideo" class="hashtag">
+    <p>Hahtag not found!</p>
+</div>
+<div class="hashtag" *ngIf="hashtag">
+    <div class="header">
+        <div class="namehashtag">
+            <p>{{hashtag}}</p>
+        </div>
+        <div class="number">
+            <p *ngIf="hashtagVideo.length <= 1">{{hashtagVideo.length + " video"}}</p>
+            <p *ngIf="hashtagVideo.length > 1">{{hashtagVideo.length + " videos"}}</p>
+            <i class="fa-solid fa-circle"></i>
+            <p *ngIf="uniqueChannelCount <= 1">{{uniqueChannelCount+ " channel"}}</p>
+            <p *ngIf="uniqueChannelCount > 1">{{uniqueChannelCount+ " channels"}}</p>
+        </div>
+    </div>
+    <div class="line"></div>
+
+    <div class="video">
+        <div *ngIf="hashtagVideo.length === 0">
+          <p>No video available in database.</p>
+        </div>
+      
+        <div *ngIf="hashtagVideo.length > 0" class="video-container">
+          <div *ngFor="let hashtag of hashtagVideo" class="item-video"
+            (mouseenter)="playVideo($event, hashtag.videoName)"
+            (mouseleave)="pauseAndResetVideo($event, hashtag.videoName)"
+            (click)="navgationToVideo(hashtag.id)"
+            >
+            
+            <div class="row-video">
+              <div *ngIf="videoUrls[hashtag.videoName]?.loading">
+                <p>Loading video...</p>
+              </div>
+        
+              <video *ngIf="!videoUrls[hashtag.videoName]?.loading && videoUrls[hashtag.videoName]?.url"
+                  #videoElement muted
+                  (loadedmetadata)="onMetadataLoaded(videoElement)"
+                  (timeupdate)="onTimeUpdate(videoElement, hashtag.videoName)">
+                  <source [src]="videoUrls[hashtag.videoName].url" type="video/mp4">
+              </video>
+        
+              <div *ngIf="!videoUrls[hashtag.videoName]?.url && !videoUrls[hashtag.videoName]?.loading">
+                <p>Failed to load video.</p>
+              </div>
+              <div class="time-div">
+                <div *ngIf="isMouseOverVideo && activeVideoName === hashtag.videoName">
+                  <span>{{ getRemainingTime(hashtag.videoName) }}</span>
+                </div>
+              
+                <div *ngIf="!isMouseOverVideo || activeVideoName !== hashtag.videoName">
+                  <p>{{ hashtag.durationVideo }}</p>
+                </div>
+              </div>
+            </div>
+            <div class="row-info">
+              <div class="col-image">
+                <img 
+                *ngIf="userPictureUrl[hashtag.imageProfile]" 
+                [src]="userPictureUrl[hashtag.imageProfile].url" 
+                alt=""
+                (click)="navigationChannelUser(hashtag.channelName)"
+                >
+              </div>
+              <div class="col-info">
+                <p class="bold">{{hashtag.fullNameSong}}</p>
+                <p class="nonbold channel" (click)="navigationChannelUser(hashtag.channelName)">
+                  {{hashtag.channelName}}
+                </p>
+                <p class="nonbold">{{hashtag.elapsedTime + ' ago'}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+</div>

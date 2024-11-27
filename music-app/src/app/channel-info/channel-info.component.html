@@ -1,0 +1,94 @@
+<div *ngIf="!channelInfo">
+    <p>Channel Not Found</p>
+</div>
+<div class="channel">
+    <div *ngIf="channelInfo" class="channel-container">
+        <div class="container-image">
+        </div>
+        <div class="channel-info">
+            <div class="channel-image">
+                <img *ngIf="userPictureUrl" [src]="userPictureUrl" alt="">
+
+            </div>
+            <div class="info">
+                <div class="name">
+                    <h1>{{channelInfo.firstName}}</h1> 
+                    <h1>{{channelInfo.lastName}}</h1>
+                </div>
+                <p>{{"@"+channelInfo.channelName}}</p>
+                <p *ngIf="channelInfo.video.length <= 0">
+                    0 video
+                </p>
+                <p *ngIf="channelInfo.video.length === 1">
+                    {{channelInfo.video.length + " video"}}
+                </p>
+                <p *ngIf="channelInfo.video.length > 1">
+                    {{channelInfo.video.length + " videos"}}
+                </p>
+                <div *ngIf="count !== null && count !== undefined; else loading">
+                    <p>Subscribers: {{ count.countSubscribe }}</p>
+                  </div>
+                  
+                  <ng-template #loading>
+                    <p>Loading...</p>
+                  </ng-template>
+                  
+                  <button *ngIf="!isSubscribed" class="btn-subscribe" (click)="subscribeToChannel()">Subscribe</button>
+                  <button *ngIf="isSubscribed" class="btn-unsubscribe" (click)="unsubscribeToChannel()">Unsubscribe</button>
+            </div>
+
+            
+        </div>
+
+        <div class="line"></div>
+
+        <div class="video-container-box">
+            <div *ngIf="channelInfo.video.length === 0">
+                <p>No video available in database.</p>
+            </div>
+            
+            <div *ngIf="channelInfo.video.length > 0" class="video-container">
+                <div *ngFor="let video of channelInfo.video" class="item-video"
+                    (mouseenter)="playVideo($event, video.videoName)"
+                    (mouseleave)="pauseAndResetVideo($event, video.videoName)"
+                    (click)="navigationToVideo(video.videoId)"
+                    >
+      
+                    <div class="row-video">
+                        <div *ngIf="videoUrls[video.videoName]?.loading">
+                            <p>Loading video...</p>
+                        </div>
+                
+                        <video *ngIf="!videoUrls[video.videoName]?.loading && videoUrls[video.videoName]?.url"
+                            #videoElement muted
+                            (loadedmetadata)="onMetadataLoaded(videoElement)"
+                            (timeupdate)="onTimeUpdate(videoElement, video.videoName)">
+                            <source [src]="videoUrls[video.videoName].url" type="video/mp4">
+                        </video>
+                
+                        <div *ngIf="!videoUrls[video.videoName]?.url && !videoUrls[video.videoName]?.loading">
+                            <p>Failed to load video.</p>
+                        </div>
+
+                        <div class="time-div">
+                            <div *ngIf="isMouseOverVideo && activeVideoName === video.videoName">
+                                <span>{{ getRemainingTime(video.videoName) }}</span>
+                            </div>
+                        
+                            <div *ngIf="!isMouseOverVideo || activeVideoName !== video.videoName">
+                                <p>{{ video.durationVideo }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row-info">
+                        <div class="col-info">
+                            <p class="bold">{{video.fullNameSong}}</p>
+                            <p class="nonbold">{{"@"+channelInfo.channelName}}</p>
+                            <p class="nonbold">{{video.elapsedTime + ' ago'}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

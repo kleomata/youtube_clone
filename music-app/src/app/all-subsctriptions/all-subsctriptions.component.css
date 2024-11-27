@@ -1,0 +1,119 @@
+.container{
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.position {
+    width: 60%;
+}
+.position .line {
+    width: 15%;
+    height: 1px;
+    background: #ccc;
+    margin-bottom: 30px;
+    margin-top: 5px;
+}
+.forSub {
+    display: flex;
+    flex-direction: row;
+}
+.subscriptions {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.subscriptions .item {
+    width: 80%;
+    height: auto;
+    cursor: pointer;
+}
+.subscriptions .item .col {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+.subscriptions .item .col .image img {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.subscriptions .item .info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: calc(100% - 130px);
+    margin-left: 20px;
+    gap: 10px;
+}
+.subscriptions .item .info .row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.subscriptions .item .info .row .name {
+    font-size: 25px;
+    font-weight: bold;
+}
+.subscriptions .item .info .channel {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    color: #ccc;
+    font-size: 15px;
+}
+.subscriptions .item .info .channel i {
+    font-size: 6px;
+}
+
+
+.subscriptions .subscribe {
+    width: 20%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: default;
+    gap: 30px;
+}
+
+.subscriptions .subscribe .col .btn-subscribe {
+    background: white;
+    color: black;
+    padding: 10px 30px;
+    border-radius: 20px;
+    outline: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .3s all ease;
+    border: 1px solid white;
+}
+.subscriptions .subscribe .col .btn-subscribe:hover {
+    transition: .3s all ease;
+    background: black;
+    color: white;
+    border: 1px solid black;
+}
+.subscriptions .subscribe .col .btn-unsubscribe {
+    background: black;
+    border: 1px solid white;
+    color: white;
+    padding: 10px 30px;
+    border-radius: 20px;
+    outline: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .3s all ease;
+}
+.subscriptions .subscribe .col .btn-unsubscribe:hover {
+    transition: .3s all ease;
+    background: #0f0f0f;
+    color: white;
+}

@@ -1,0 +1,12 @@
+# Node modules (Angular)
+node_modules/
+
+# IntelliJ/IDEA files (IntelliJ or JetBrains IDE)
+.idea/
+
+# Maven target directory (Spring Boot)
+target/
+
+# Angular build output (application Angular)
+dist/
+

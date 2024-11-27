@@ -1,0 +1,122 @@
+aside{
+    background: #0f0f0f;
+    height: calc(100vh - 60px);
+    width: 240px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #cccccc transparent;
+    padding: 12px;
+    position: fixed;
+    margin-top: 60px;
+}
+.collapsed{
+    width: 72px;
+    padding: 0px 4px;
+}
+.sidenav-list {
+    width: 200px;
+}
+.sidenav-container-section{
+    width: 100%;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    padding-left: 12px;
+}
+.sidenav-title-section {
+    font-size: 18px;
+    font-weight: bold;
+}
+.sidenav-item {
+    list-style: none;
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center
+}
+.sidenav-link{
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 25px;
+    padding: 0px 12px;
+    border-radius: 10px;
+}
+.sidenav-link:hover{
+    background: #272727;
+}
+.sidenav-icon{
+    font-size: 20px;
+}
+.sidenav-label{
+    font-size: 16px;
+}
+.aside-line{
+    height: 2px;
+    width: 100%;
+    background: #272727;
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+
+/** Resize Style **/
+.sidenav-resize-list {
+    width: 64px;
+}
+.sidenav-resize-item {
+    list-style: none;
+    width: 100%;
+    height: 74px;
+    display: flex;
+    align-items: center
+}
+.sidenav-resize-link{
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 6px;  
+    border-radius: 10px;
+}
+.sidenav-resize-link:hover{
+    background: #272727;
+}
+.sidenav--resize-icon{
+    font-size: 20px;
+}
+.sidenav-resize-label{
+    font-size: 12px;
+}
+/* ============================ */
+
+/* Button Logout */
+.aside-logout-button {
+    cursor: pointer;
+    outline: none;
+    border: none;
+    width: 100%;
+    height: 40px;
+    background: none;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 25px;
+    padding: 0px 12px;
+    border-radius: 10px;
+}
+.aside-logout-button:hover{
+    background: #272727;
+}
+.aside-logout-button i{
+    font-size: 20px;
+}
+.aside-logout-button span{
+    font-size: 16px;
+}

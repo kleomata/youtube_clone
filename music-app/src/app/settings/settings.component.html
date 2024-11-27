@@ -1,0 +1,11 @@
+<div class="settings-content">
+    <div *ngIf="!isAuthenticated" class="settings-container">
+       <div class="side-bar-settings">
+            <app-side-bar-video></app-side-bar-video>
+       </div>
+
+       <div class="router-outler-settings">
+            <router-outlet></router-outlet>
+       </div>
+    </div>
+</div>

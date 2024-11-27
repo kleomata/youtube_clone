@@ -1,0 +1,109 @@
+.hashtag {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    padding-top: 24px;
+    margin-bottom: 50px;
+}
+.hashtag .header {
+    display: flex;
+    flex-direction: column;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+.hashtag .header .namehashtag p {
+    font-size: 30px;
+    font-weight: bold;
+}
+.hashtag .header .number {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    color: #ccc;
+    font-size: 15px;
+}
+.hashtag .header .number i {
+    font-size: 6px;
+}
+
+.hashtag .line {
+    width: 100%;
+    height: 1px;
+    background: #272727;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+/* Video */ 
+.hashtag .video {
+    width: 100%;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+.video-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    width: 100%;
+    column-gap: 20px;
+    row-gap: 40px;
+}
+.video-container .item-video {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    cursor: pointer;
+}
+.video-container .item-video .row-info {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+.video-container .item-video .row-info .col-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.video-container .row-video {
+    position: relative;
+}
+.video-container .row-video .time-div {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: #0f0f0f;
+    padding: 1px 5px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.video-container .item-video  video{
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+}
+.video-container .item-video img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+    object-position: center;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.video-container .item-video .bold {
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+}
+.video-container .item-video .nonbold {
+    color: #ccc;
+    font-size: 15px;
+}
+.channel {
+    cursor: pointer;
+    z-index: 10;
+}

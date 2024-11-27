@@ -1,0 +1,18 @@
+<div class="side-bar-video-container">
+    
+    <ul class="sidenav-list" *ngIf="!hasChannel">
+        <li class="sidenav-item" *ngFor="let sett of settingsComponent">
+            <a [routerLink]="sett.routerLink" class="sidenav-link">
+                <span class="sidenav-label">{{sett.label}}</span>
+            </a>
+        </li>
+    </ul>
+    
+    <ul class="sidenav-list" *ngIf="hasChannel">
+        <li class="sidenav-item" *ngFor="let channel of channelComponent">
+            <a [routerLink]="channel.routerLink" class="sidenav-link">
+                <span class="sidenav-label">{{channel.label}}</span>
+            </a>
+        </li>
+    </ul>
+</div>

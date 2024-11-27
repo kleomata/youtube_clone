@@ -1,0 +1,58 @@
+<nav>
+    <div class="start-nav">
+        <button (click)="toggleSidebar()">
+            <i class="fas fa-bars"></i>
+        </button>
+        <a routerLink="/youtube" (click)="showSideBar()">
+            <img src="../../assets/images/youtube_logo.png" alt="">
+        </a>
+    </div>
+
+    <div class="center-nav">
+        <input type="text" placeholder="Search"
+            [(ngModel)] = "query"
+            (input)="onSearchSuggestions()"
+            (keydown.enter)="onSearch()"
+            
+        >
+        <div class="icon">
+            <button class="search-button">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+            <div class="text-div">
+                <p class="text">Search</p>
+            </div>
+        </div>
+
+        <div *ngIf="searchVideo.length > 0" class="search-suggestions">
+            <div *ngFor="let suggestion of searchVideo" class="item">
+          
+              <div *ngIf="matchText(suggestion.nameSong)" class="row"
+              (click)="selectSuggestions(suggestion.nameSong)">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <p [innerHTML]="highlightText(suggestion.nameSong)" class="text">{{suggestion.nameSong}}</p>
+            </div>
+
+            <div *ngIf="matchText(suggestion.nameSinger.join(', '))" class="row"
+            (click)="selectSuggestions(suggestion.nameSinger.join(', '))">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <p [innerHTML]="highlightText(suggestion.nameSinger.join(', '))" class="text"></p>
+            </div>
+
+            <div *ngIf="matchText(suggestion.fullNameSong)" class="row"
+            (click)="selectSuggestions(suggestion.fullNameSong)">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <p [innerHTML]="highlightText(suggestion.fullNameSong)" class="text"></p>
+            </div>            
+            </div>
+        </div>
+          
+    </div>
+
+    <div class="end-nav">
+        <div *ngIf="userProfile" class="profile">
+            <p>{{userProfile.username}}</p>
+            <img [src]="userPictureUrl" alt="">
+        </div>
+    </div>
+</nav>

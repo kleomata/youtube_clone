@@ -1,0 +1,19 @@
+<div class="createChannel">
+    <form *ngIf="!hasChannel" [formGroup]="createChannel" (ngSubmit)="createChannelBtn()">
+        <input type="text" formControlName="channel">
+        <button type="submit">Create Channel</button>
+    </form>
+
+
+    <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+    </div>
+    
+    <div *ngIf="successMessage" class="success-message">
+        {{ successMessage }}
+    </div>
+
+    <div *ngIf="hasChannel" class="info-message">
+        You already have a channel!
+    </div>
+</div>

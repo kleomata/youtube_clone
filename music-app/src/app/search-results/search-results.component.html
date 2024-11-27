@@ -1,0 +1,67 @@
+<div class="results-container">  
+    <div *ngIf="searchResults.length > 0" class="video-container">
+        <div *ngFor="let video of searchResults" class="item-video"
+          (mouseenter)="playVideo($event, video.videoName)"
+          (mouseleave)="pauseAndResetVideo($event, video.videoName)"
+          (click)="nvigationToVideo(video.id)"
+          >
+          
+          <div class="row-video">
+            <div *ngIf="videoUrls[video.videoName]?.loading">
+              <p>Loading video...</p>
+            </div>
+      
+            <video *ngIf="!videoUrls[video.videoName]?.loading && videoUrls[video.videoName]?.url"
+                #videoElement muted
+                (loadedmetadata)="onMetadataLoaded(videoElement)"
+                (timeupdate)="onTimeUpdate(videoElement, video.videoName)">
+                <source [src]="videoUrls[video.videoName].url" type="video/mp4">
+            </video>
+      
+            <div *ngIf="!videoUrls[video.videoName]?.url && !videoUrls[video.videoName]?.loading">
+              <p>Failed to load video.</p>
+            </div>
+            <div class="time-div">
+              <div *ngIf="isMouseOverVideo && activeVideoName === video.videoName">
+                <span>{{ getRemainingTime(video.videoName) }}</span>
+              </div>
+            
+              <div *ngIf="!isMouseOverVideo || activeVideoName !== video.videoName">
+                <p>{{ video.durationVideo }}</p>
+              </div>
+            </div>
+          </div>
+          <div class="row-info">
+            <div class="row">
+              <p class="bold">{{video.fullNameSong}}</p>
+            </div>
+            <div class="row">
+              <p class="nonbold">{{video.elapsedTime + ' ago'}}</p>
+            </div>
+            <div class="row channel-row">
+              <div class="col-image">
+                <img 
+                *ngIf="userPictureUrl[video.imageProfile]" 
+                [src]="userPictureUrl[video.imageProfile].url" 
+                alt=""
+                (click)="navigationChannelUser(video.channelName)"
+                >
+              </div>
+              <p class="nonbold channel" (click)="navigationChannelUser(video.channelName)">
+                {{video.channelName}}
+              </p>
+            </div>
+            <div class="row">
+              <p class="description">{{truncateText(video.descriptionVideo, 150)}}</p>
+            </div>
+          </div>
+        </div>
+       
+    
+      </div>
+    <div *ngIf="searchResults.length === 0">
+      <p>No results were found for this search.
+    </p>
+    </div>
+</div>
+  
